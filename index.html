@@ -1,1 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home Dashboard</title>
 
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#0f0f0f;
+  color:white;
+  text-align:center;
+}
+
+.clock {
+  font-size:90px;
+  margin-top:40px;
+}
+
+.date {
+  font-size:25px;
+  color:#aaa;
+}
+
+.section {
+  margin-top:50px;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:20px;
+  padding:20px;
+}
+
+.card {
+  background:#1c1c1c;
+  padding:30px;
+  border-radius:20px;
+  font-size:22px;
+  transition:0.2s;
+}
+
+.card:active {
+  background:#333;
+}
+
+.footer {
+  position:fixed;
+  bottom:10px;
+  width:100%;
+  color:#666;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="clock" id="clock"></div>
+<div class="date" id="date"></div>
+
+<div class="section">
+<h2>Lights</h2>
+<div class="grid">
+<div class="card">Living Room</div>
+<div class="card">Kitchen</div>
+<div class="card">Bedroom</div>
+<div class="card">All Off</div>
+</div>
+</div>
+
+<div class="section">
+<h2>Scenes</h2>
+<div class="grid">
+<div class="card">Movie Mode</div>
+<div class="card">Good Night</div>
+<div class="card">Morning</div>
+<div class="card">Away</div>
+</div>
+</div>
+
+<div class="footer">
+Smart Home Dashboard
+</div>
+
+<script>
+function updateTime() {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const date = now.toDateString();
+
+  document.getElementById('clock').innerHTML = hours + ":" + minutes;
+  document.getElementById('date').innerHTML = date;
+}
+
+setInterval(updateTime, 1000);
+updateTime();
+</script>
+
+</body>
+</html>
