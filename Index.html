@@ -2,50 +2,56 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smart Home Dashboard</title>
+<title>Home Dashboard</title>
+
 <style>
 body {
   margin:0;
   font-family: Arial, sans-serif;
-  background:#111;
+  background:#0f0f0f;
   color:white;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  text-align:center;
 }
 
 .clock {
-  font-size:80px;
+  font-size:90px;
   margin-top:40px;
+}
+
+.date {
+  font-size:25px;
+  color:#aaa;
 }
 
 .section {
-  width:90%;
-  margin-top:40px;
+  margin-top:50px;
 }
 
-.section h2 {
-  border-bottom:1px solid #333;
-  padding-bottom:10px;
-}
-
-.button-grid {
+.grid {
   display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:15px;
-  margin-top:20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap:20px;
+  padding:20px;
 }
 
-.button {
-  background:#222;
-  padding:25px;
-  border-radius:15px;
-  text-align:center;
-  font-size:20px;
+.card {
+  background:#1c1c1c;
+  padding:30px;
+  border-radius:20px;
+  font-size:22px;
+  transition:0.2s;
 }
 
-.button:active {
-  background:#444;
+.card:active {
+  background:#333;
+}
+
+.footer {
+  position:fixed;
+  bottom:10px;
+  width:100%;
+  color:#666;
+  font-size:14px;
 }
 </style>
 </head>
@@ -53,36 +59,45 @@ body {
 <body>
 
 <div class="clock" id="clock"></div>
+<div class="date" id="date"></div>
 
 <div class="section">
-  <h2>Lights</h2>
-  <div class="button-grid">
-    <div class="button">Living Room</div>
-    <div class="button">Kitchen</div>
-    <div class="button">Bedroom</div>
-    <div class="button">All Off</div>
-  </div>
+<h2>Lights</h2>
+<div class="grid">
+<div class="card">Living Room</div>
+<div class="card">Kitchen</div>
+<div class="card">Bedroom</div>
+<div class="card">All Off</div>
+</div>
 </div>
 
 <div class="section">
-  <h2>Scenes</h2>
-  <div class="button-grid">
-    <div class="button">Movie Mode</div>
-    <div class="button">Good Night</div>
-    <div class="button">Morning</div>
-    <div class="button">Away</div>
-  </div>
+<h2>Scenes</h2>
+<div class="grid">
+<div class="card">Movie Mode</div>
+<div class="card">Good Night</div>
+<div class="card">Morning</div>
+<div class="card">Away</div>
+</div>
+</div>
+
+<div class="footer">
+Smart Home Dashboard
 </div>
 
 <script>
-function updateClock() {
+function updateTime() {
   const now = new Date();
   const hours = now.getHours().toString().padStart(2, '0');
   const minutes = now.getMinutes().toString().padStart(2, '0');
+  const date = now.toDateString();
+
   document.getElementById('clock').innerHTML = hours + ":" + minutes;
+  document.getElementById('date').innerHTML = date;
 }
-setInterval(updateClock, 1000);
-updateClock();
+
+setInterval(updateTime, 1000);
+updateTime();
 </script>
 
 </body>
